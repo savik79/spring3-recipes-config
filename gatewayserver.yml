@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: players
+          uri: ${PLAYERS_URI:lb://footballserver}  # Use the PLAYERS_URI property, default to lb://footballserver
+          predicates:
+            - Path=/api/players/**  # Define the path predicate for /api/players/**
+          filters:
+            - StripPrefix=1  # Strip the first part of the URI before forwarding the request
+
+        - id: albums
+          uri: ${ALBUMS_URI:lb://albumsserver}  # Use the ALBUMS_URI property, default to lb://albumsserver
+          predicates:
+            - Path=/api/albums/**  # Define the path predicate for /api/albums/**
+          filters:
+            - StripPrefix=1  # Strip the first part of the URI before forwarding the request
