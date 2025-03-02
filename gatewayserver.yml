@@ -9,6 +9,7 @@ spring:
           uri: lb://footballserver
           predicates:
             - Path=/api/players/**
+            - Path=/api/players
           filters:
             - StripPrefix=1
 
@@ -16,5 +17,6 @@ spring:
           uri: lb://albumsserver
           predicates:
             - Path=/api/albums/**
+            - Path=/api/albums/
           filters:
             - StripPrefix=1
