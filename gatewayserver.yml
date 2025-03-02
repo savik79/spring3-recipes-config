@@ -6,14 +6,14 @@ spring:
     gateway:
       routes:
         - id: players
-          uri: ${PLAYERS_URI:lb://footballserver}
+          uri: lb://footballserver
           predicates:
             - Path=/api/players/**
           filters:
             - StripPrefix=1
 
         - id: albums
-          uri: ${ALBUMS_URI:lb://albumsserver}
+          uri: lb://albumsserver
           predicates:
             - Path=/api/albums/**
           filters:
